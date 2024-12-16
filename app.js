@@ -133,7 +133,7 @@ async function sendMail() {
 
 		await transporter.sendMail({
 			from: "tda.ducanh@gmail.com",
-			to: "anhtd@ispeak.vn",
+			to: "huyennt@ispeak.vn",
 			subject: `Oncall báo cáo ${DateTime.now()
 				.setZone("Asia/Bangkok")
 				.toFormat("yyyy-MM-dd")}`,
