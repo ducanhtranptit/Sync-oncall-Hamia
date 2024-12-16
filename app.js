@@ -147,7 +147,11 @@ async function sendMail() {
 			],
 		});
 
-		console.log("Email sent successfully.");
+		console.log(
+			`Email ${DateTime.now()
+				.setZone("Asia/Bangkok")
+				.toFormat("yyyy-MM-dd")} sent successfully.`
+		);
 	} catch (error) {
 		console.error("Failed to send email:", error.message);
 	}
