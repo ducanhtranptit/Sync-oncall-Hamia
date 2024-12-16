@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+    node-app:
+        build: .
+        container_name: sync_oncall_Hamia_daily
+        ports:
+            - "3000:3000"
+        environment:
+            - NODE_ENV=production
+        volumes:
+            - .:/usr/src/app
+            - /usr/src/app/node_modules

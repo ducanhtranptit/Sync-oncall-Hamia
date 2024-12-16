@@ -1,0 +1,20 @@
+{
+  "name": "sync-oncall-nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.9",
+    "exceljs": "^4.4.0",
+    "express": "^4.21.2",
+    "https-proxy-agent": "^7.0.6",
+    "luxon": "^3.5.0",
+    "nodemailer": "^6.9.16"
+  }
+}
