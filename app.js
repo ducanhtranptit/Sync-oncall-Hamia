@@ -71,7 +71,7 @@ async function callInfor() {
 		);
 
 		return response.data.items
-			.filter((call) => ["120", "123", "125"].includes(call.caller))
+			.filter((call) => ["120", "123", "125", "180"].includes(call.caller))
 			.map((call) => ({
 				id: call.id,
 				caller: call.caller,
