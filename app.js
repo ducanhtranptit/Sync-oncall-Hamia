@@ -71,7 +71,9 @@ async function callInfor() {
 		);
 
 		return response.data.items
-			.filter((call) => ["120", "123", "125", "180"].includes(call.caller))
+			.filter((call) =>
+				["120", "123", "125", "180"].includes(call.caller)
+			)
 			.map((call) => ({
 				id: call.id,
 				caller: call.caller,
@@ -96,18 +98,45 @@ async function createDailyReport() {
 			{ header: "ID", key: "id", width: 20 },
 			{ header: "Caller", key: "caller", width: 20 },
 			{ header: "Callee", key: "callee", width: 20 },
-			{ header: "Start time", key: "started_at", width: 25 },
-			{ header: "End time", key: "ended_at", width: 25 },
+			{
+				header: "Start time",
+				key: "started_at",
+				width: 25,
+				style: { numFmt: "yyyy-mm-dd hh:mm:ss" },
+			},
+			{
+				header: "End time",
+				key: "ended_at",
+				width: 25,
+				style: { numFmt: "yyyy-mm-dd hh:mm:ss" },
+			},
 			{ header: "Status", key: "status_code", width: 30 },
 			{ header: "Duration (s)", key: "duration", width: 15 },
 		];
 
 		calls.forEach((call) => {
+			const startedAt = DateTime.fromISO(call.started_at, {
+				zone: "UTC",
+			})
+				.plus({ hours: 7 }) 
+				.toJSDate();
+
+			const endedAt = DateTime.fromISO(call.ended_at, {
+				zone: "UTC",
+			})
+				.plus({ hours: 7 }) 
+				.toJSDate();
+
 			worksheet.addRow({
-				...call,
+				id: call.id,
+				caller: call.caller,
+				callee: call.callee,
+				started_at: startedAt,
+				ended_at: endedAt,
 				status_code:
 					statusCodeDescriptions[call.status_code] ||
 					call.status_code,
+				duration: call.duration,
 			});
 		});
 
